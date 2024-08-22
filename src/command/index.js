@@ -12,16 +12,16 @@ export const updateTaskCommand = (program) => {
 	program
 		.command('update <id> <task>')
 		.description('Update a task')
-		.action((task) => {
-			console.log(`Task updated successfully (ID: ${task})`);
+		.action((id, task) => {
+			taskService.update(+id,task)
 		});
 };
 export const deleteTaskCommand = (program) => {
 	program
 		.command('delete <id>')
 		.description('Delete a task')
-		.action((task) => {
-			console.log(`Task deleted successfully (ID: ${task})`);
+		.action((id) => {
+			taskService.delete(+id)
 		});
 }
 export const markProgressTaskCommand = (program) => {

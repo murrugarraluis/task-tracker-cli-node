@@ -1,13 +1,11 @@
-import { randomUUID } from 'crypto';
 import fs from 'fs';
 import path from 'path';
 
 const filePath = path.resolve('data', 'tasks.json');
 
-export const generateUuid = () => {
-	return randomUUID();
-};
-
+export const generateId = (tasks) => {
+	return tasks.length > 0 ? ((tasks.at(-1))['id'] + 1) : 1
+}
 export const getTasksJSON = () => {
 	const defaultData = [];
 
