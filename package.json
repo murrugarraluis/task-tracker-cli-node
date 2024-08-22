@@ -1,0 +1,19 @@
+{
+  "name": "task-tracker-cli-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "bin": {
+    "my-cli-app": "./bin/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}
