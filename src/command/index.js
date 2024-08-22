@@ -42,13 +42,15 @@ export const markDoneTaskCommand = (program) => {
 };
 export const lisTasksCommand = (program) => {
 	program
-		.command('list <status>')
+		.command('list [status]')
 		.description('List tasks')
 		.action((status) => {
-			const validStatuses = ['todo', 'in-progress', 'done'];
-			if (!validStatuses.includes(status)) {
-				console.error(`Invalid status: ${status}. Valid options are: ${validStatuses.join(', ')}.`);
-				process.exit(1);
+			if (status) {
+				const validStatuses = ['todo', 'in-progress', 'done'];
+				if (!validStatuses.includes(status)) {
+					console.error(`Invalid status: ${status}. Valid options are: ${validStatuses.join(', ')}.`);
+					process.exit(1);
+				}
 			}
 			const tasks = taskService.getAll(status)
 			console.log(tasks);
