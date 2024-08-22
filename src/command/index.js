@@ -13,7 +13,7 @@ export const updateTaskCommand = (program) => {
 		.command('update <id> <task>')
 		.description('Update a task')
 		.action((id, task) => {
-			taskService.update(+id,task)
+			taskService.update(+id, { description: task })
 		});
 };
 export const deleteTaskCommand = (program) => {
@@ -28,23 +28,29 @@ export const markProgressTaskCommand = (program) => {
 	program
 		.command('mark-in-progress <id>')
 		.description('Mark as progress a task')
-		.action((task) => {
-			console.log(`Task marked as progress successfully (ID: ${task})`);
+		.action((id) => {
+			taskService.markInProgress(+id)
 		});
 };
 export const markDoneTaskCommand = (program) => {
 	program
 		.command('mark-done <id>')
 		.description('Mark as done a task')
-		.action((task) => {
-			console.log(`Task marked as done successfully (ID: ${task})`);
+		.action((id) => {
+			taskService.markDone(+id)
 		});
 };
 export const lisTasksCommand = (program) => {
 	program
-		.command('list [status]')
+		.command('list <status>')
 		.description('List tasks')
 		.action((status) => {
-			console.log(`List tasks successfully (status: ${status})`);
+			const validStatuses = ['todo', 'in-progress', 'done'];
+			if (!validStatuses.includes(status)) {
+				console.error(`Invalid status: ${status}. Valid options are: ${validStatuses.join(', ')}.`);
+				process.exit(1);
+			}
+			const tasks = taskService.getAll(status)
+			console.log(tasks);
 		});
 };
