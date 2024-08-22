@@ -1,10 +1,12 @@
+import TaskService from "../services/task.service.js";
+const taskService = new TaskService();
 export const addTaskCommand = (program) => {
-  program
-    .command('add <task>')
-    .description('Add a new task')
-    .action((task) => {
-      console.log(`Task added successfully (ID: ${task})`);
-    });
+	program
+		.command('add <task>')
+		.description('Add a new task')
+		.action((task) => {
+			taskService.add(task)
+		});
 };
 export const updateTaskCommand = (program) => {
 	program
