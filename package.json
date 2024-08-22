@@ -2,9 +2,9 @@
   "name": "task-tracker-cli-express",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.js",
+  "main": "index.js",
   "bin": {
-    "my-cli-app": "./bin/cli.js"
+    "task-cli": "./bin/cli.js"
   },
   "type": "module",
   "scripts": {

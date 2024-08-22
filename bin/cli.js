@@ -1,14 +1,23 @@
 #!/usr/bin/env node
 
-import { Command } from "commander"
-const program = new Command();
+import { ProgramBuilder } from "../src/build.js";
+import {
+	addTaskCommand,
+	updateTaskCommand,
+	deleteTaskCommand,
+	markProgressTaskCommand,
+	markDoneTaskCommand,
+	lisTasksCommand,
+} from "../src/command/index.js";
+
+const program = new ProgramBuilder();
 
 program
-  .version("1.0.0")
-  .description("My Node CLI")
-  .option("-n, --name <type>", "Add your name")
-  .action((options) => {
-    console.log(`Hey, ${options.name}!`);
-  });
+	.addCommand(addTaskCommand)
+	.addCommand(updateTaskCommand)
+	.addCommand(deleteTaskCommand)
+	.addCommand(markDoneTaskCommand)
+	.addCommand(markProgressTaskCommand)
+	.addCommand(lisTasksCommand)
 
-program.parse(process.argv);
+program.build().parse(process.argv)
